@@ -1,3 +1,23 @@
+.main {
+  color: rgb(232, 17, 17);
+
+  background-image: url('https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large');
+  background-position: center;
+  background-size: cover;
+}
+
+.maincontent {
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.maincontent > p > a {
+  color: rgb(232, 17, 17);
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   flex-direction: column;
