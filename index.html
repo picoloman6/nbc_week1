@@ -13,6 +13,16 @@
     <script defer src="./script.js"></script>
   </head>
   <body>
+    <div class="main">
+      <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-5">
+          <div class="maincontent">
+            <p><a href="#">오 월</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
@@ -31,6 +41,7 @@
           <input
             class="form-control inputphoto"
             id="floatingInput"
+            autocomplete="off"
           />
           <label for="floatingInput">사진</label>
         </div>
@@ -38,6 +49,7 @@
           <input
             class="form-control inputname"
             id="floatingInput"
+            autocomplete="off"
           />
           <label for="floatingInput">이름</label>
         </div>
@@ -45,6 +57,7 @@
           <input
             class="form-control inputmbti"
             id="floatingInput"
+            autocomplete="off"
           />
           <label for="floatingInput">MBTI</label>
         </div>
@@ -52,12 +65,15 @@
           <input
             class="form-control inputtmi"
             id="floatingInput"
+            autocomplete="off"
           />
           <label for="floatingInput">TMI</label>
         </div>
-        <div class="input-form-btn">
-          <button id="inputbtn" type="button" class="btn btn-dark">입력</button>
-          <button type="button" class="btn btn-outline-dark">취소</button>
+        <div id="inputbtn" class="input-form-btn">
+          <button id="enterBtn" type="button" class="btn btn-dark">입력</button>
+          <button id="cancelBtn" type="button" class="btn btn-outline-dark">
+            취소
+          </button>
         </div>
       </div>
 
