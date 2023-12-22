@@ -25,3 +25,36 @@
 .btn {
   width: 100px;
 }
+
+.card-img, .card-img-bottom, .card-img-top{
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-wrap{
+  max-width: 960px;
+  margin: 30px auto 70px;
+}
+
+.g-4.gy-4.card-list #card{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-list .card{
+  width: 290px;
+}
+
+/*------- responsive --------*/
+@media (min-width: 768px){
+  .row-cols-md-2>*{
+      width: auto;
+  }
+}
+@media (max-width: 768px){
+  .row-cols-1>*{
+    display: flex;
+    justify-content: center;
+  }
+}
