@@ -5,7 +5,11 @@ import {
   collection,
   addDoc,
 } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
-import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+import {
+  getDocs,
+  doc,
+  deleteDoc,
+} from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
 
 // Firebase 구성 정보 설정
 const firebaseConfig = {
@@ -72,7 +76,10 @@ $('document').ready(async function () {
             <div class="card">
                 <img src="${photo}" class="card-img-top" alt="..." />
                 <div class="card-body">
-                <h5 class="card-title">${name}</h5>
+                <div class="card-header">
+                  <h5 class="card-title">${name}</h5>
+                  <button id="${v.id}" class="card-button">삭제</button>
+                </div>
                 <p class="card-text">${mbti}
                 </p>
                 <p class="card-text">${tmi}
@@ -81,5 +88,13 @@ $('document').ready(async function () {
             </div>
         </div>`;
     $('#card').append(temp_html);
+  });
+
+  const btns = $('.card-button');
+
+  btns.click(async function (e) {
+    const id = e.target.id;
+    await deleteDoc(doc(db, 'info', id));
+    window.location.reload();
   });
 });

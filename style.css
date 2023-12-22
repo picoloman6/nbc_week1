@@ -3,7 +3,7 @@
 .main {
   color: rgb(232, 17, 17);
 
-  background-image: url('https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large');
+  background-image: url("https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large");
   background-position: center;
   background-size: cover;
 }
@@ -82,6 +82,25 @@
 
 .card-list .card {
   width: 290px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+
+  background: none;
+  border: none;
+}
+
+.card-header > button {
+  width: 40px;
+  height: 25px;
+
+  font-size: 10px;
+
+  background: red;
+  color: white;
+  border: none;
 }
 
 /*------- responsive --------*/
