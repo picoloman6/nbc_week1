@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-form {
+  width: 500px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.input-form-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  width: 100px;
+}
