@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Noto+Sans+KR&display=swap');
+
 .main {
   color: rgb(232, 17, 17);
 
@@ -14,7 +16,11 @@
   justify-content: center;
 }
 .maincontent > p > a {
-  color: rgb(232, 17, 17);
+  text-shadow: 6px 2px 2px gray;
+  font-weight: bold;
+  font-size: 75px;
+  font-family: 'Diphylleia', serif;
+  color: #a2dc6d;
   text-decoration: none;
 }
 
@@ -50,41 +56,42 @@
   margin: 120px;
   flex-wrap: wrap;
 
-
   gap: 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.card-img, .card-img-bottom, .card-img-top{
+.card-img,
+.card-img-bottom,
+.card-img-top {
   height: 250px;
   object-fit: cover;
 }
 
-.card-wrap{
+.card-wrap {
   max-width: 960px;
   margin: 30px auto 70px;
 }
 
-.g-4.gy-4.card-list #card{
+.g-4.gy-4.card-list #card {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
-.card-list .card{
+.card-list .card {
   width: 290px;
 }
 
 /*------- responsive --------*/
-@media (min-width: 768px){
-  .row-cols-md-2>*{
-      width: auto;
+@media (min-width: 768px) {
+  .row-cols-md-2 > * {
+    width: auto;
   }
 }
-@media (max-width: 768px){
-  .row-cols-1>*{
+@media (max-width: 768px) {
+  .row-cols-1 > * {
     display: flex;
     justify-content: center;
   }
