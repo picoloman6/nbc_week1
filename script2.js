@@ -44,8 +44,8 @@ $('document').ready(async function () {
 
     const temp_html = `
   <div class="card-body">
-    <h5 class="card-title" ${v.id}>C${name}</h5>
-    <p class="card-text" ${v.id}>
+    <h6 class="card-title" ${v.id}>${name}</h6>
+    <p class="card-text text-list" ${v.id}>
     ${content}</p>
   </div>
 `;
