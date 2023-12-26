@@ -51,6 +51,14 @@ async function addContent() {
   window.location.reload();
 }
 
+function deleteContent() {
+  $("#comment-window").toggleClass("hidden");
+  $("#exampleFormControlInput1").val("");
+  $("#exampleFormControlInput2").val("");
+  mod = "add";
+  id = "";
+}
+
 $("#addButton").click(function () {
   $("#comment-window").toggleClass("hidden");
 });
@@ -91,6 +99,7 @@ $("document").ready(async function () {
     await deleteDoc(doc(db, "comment", id));
     window.location.reload();
   });
+
   updateBtns.click(function (e) {
     // 1. id 가져오기
     const contents = $(`.${e.target.id}`);
@@ -122,5 +131,11 @@ $("document").ready(async function () {
 $("body").keydown(async function (e) {
   if (e.key === "Enter") {
     await addContent();
+  } else if (e.key === "Escape") {
+    deleteContent();
   }
+});
+
+$("#cancelBtn").click(function () {
+  deleteContent();
 });
