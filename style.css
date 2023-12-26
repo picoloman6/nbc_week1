@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Diphylleia&family=Noto+Sans+KR&display=swap");
 
 .main {
-  background-image: url('https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large');
+  background-image: url("https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large");
   background-position: center;
   background-size: cover;
 }
@@ -123,6 +123,31 @@
   background: red;
   color: white;
   border: none;
+}
+
+.comment-window {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  margin-top: 15px;
+}
+
+.comment-label {
+  width: 20%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.comment-name {
+  width: 15%;
+  height: 38px;
+}
+
+.comment-comment {
+  width: 45%;
+  height: 38px;
 }
 
 /*------- responsive --------*/

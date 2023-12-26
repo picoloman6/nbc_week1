@@ -28,17 +28,18 @@
       <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
           <li id="addButton" class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">추가하기</a>
+            <button class="nav-link active">추가하기</button>
+          </li>
+          <li id="addButton" class="nav-item">
             <a href="./index.html" class="nav-link">소개페이지</a>
           </li>
         </ul>
       </header>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Email address</label
-        >
-        <input class="form-control" id="exampleFormControlInput1" />
-        <button type="button" class="btn btn-dark">Dark</button>
+      <div class="mb-3 comment-window">
+        <label class="comment-label">방명록 남기기</label>
+        <input class="comment-name" placeholder="이름" />
+        <input class="comment-comment" placeholder="내용" />
+        <button type="button" class="btn btn-dark">입력</button>
       </div>
     </div>
   </body>
