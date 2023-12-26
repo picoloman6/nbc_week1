@@ -25,6 +25,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let mod = "add";
+let id = "";
+
 $("#addButton").click(function () {
   $(".comment-window").toggle();
 });
@@ -34,8 +37,15 @@ $("#enterbtn").click(async function () {
   const name = $("#exampleFormControlInput1").val();
   const content = $("#exampleFormControlInput2").val();
 
-  const doc = { name, content };
-  await addDoc(collection(db, "comment"), doc);
+  const document = { name, content };
+
+  // 6. 등록, 수정 나누기
+  if (mod === "add") {
+    await addDoc(collection(db, "comment"), document);
+  } else {
+    await updateDoc(doc(db, "comment", id), document);
+  }
+
   alert("작성완료");
   window.location.reload();
 });
@@ -48,10 +58,34 @@ $("document").ready(async function () {
 
     const temp_html = `
       <div class="card-body">
-        <h6 class="card-title" ${v.id}>${name}</h6>
-        <p class="card-text text-list" ${v.id}>${content}</p>
+        <h6 class="card-title ${v.id}">${name}</h6>
+        <p class="card-text text-list ${v.id}">${content}</p>
+        <button id="${v.id}" class="update-button">수정</button>
       </div>
     `;
     $("#card").append(temp_html);
+  });
+
+  const updateBtns = $(".update-button");
+
+  updateBtns.click(function (e) {
+    // 1. id 가져오기
+    const contents = $(`.${e.target.id}`);
+
+    // 2. 내용 가져오기
+    const name = contents[0].innerText;
+    const comment = contents[1].innerText;
+
+    // 3. 인풋 가져오기
+    const nameInput = $("#exampleFormControlInput1");
+    const commentInput = $("#exampleFormControlInput2");
+
+    // 4. 인풋에 내용 집어 넣기
+    nameInput.val(name);
+    commentInput.val(comment);
+
+    // 5. 수정 모드로 바꿔주기
+    mod = "update";
+    id = e.target.id;
   });
 });
