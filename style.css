@@ -191,6 +191,9 @@
   font-size: 16px;
 }
 
+
+
+
 /*------- responsive --------*/
 @media (min-width: 768px) {
   .row-cols-md-2 > * {
