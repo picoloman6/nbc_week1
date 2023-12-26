@@ -68,16 +68,18 @@
 }
 
 .card-title {
-  height: 30%;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 26px;
   text-align: center;
+  margin-top: 22px;
+  margin-bottom: 25px;
 }
 
 .card-text {
   height: 70%;
   font-size: 18px;
   text-align: center;
+  line-height: 250%;
 }
 
 .card-img,
