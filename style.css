@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Noto+Sans+KR&display=swap');
 
 .main {
-  color: rgb(232, 17, 17);
-
-  background-image: url("https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large");
+  background-image: url('https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large');
   background-position: center;
   background-size: cover;
 }
