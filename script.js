@@ -86,8 +86,8 @@ $("document").ready(async function () {
                 <img id="${v.id}" src="${photo}" class="card-img-top ${v.id}" alt="..." />
                 <div class="card-body">
                 <div class="card-header">
-                  <h5 class="card-title ${v.id}">${name}</h5>
-                  <button id="${v.id}" class="card-button">삭제</button>
+                    <h5 class="card-title ${v.id}">${name}</h5>
+                    <button id="${v.id}" class="card-button">삭제</button>
                 </div>
                 <p class="card-text ${v.id}">${mbti}
                 </p>
