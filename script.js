@@ -28,6 +28,43 @@ const db = getFirestore(app);
 let mode = "add";
 let id = "";
 
+const photoInput = $(".inputphoto");
+const nameInput = $(".inputname");
+const mbtiInput = $(".inputmbti");
+const tmiInput = $(".inputtmi");
+
+async function addContent() {
+  const photo = photoInput.val();
+  const name = nameInput.val();
+  const mbti = mbtiInput.val();
+  const tmi = tmiInput.val();
+
+  if (photo === "" || name === "" || mbti === "" || tmi === "") {
+    alert("값을 입력하세요");
+    return;
+  }
+
+  const content = { photo, name, mbti, tmi };
+
+  if (mode === "add") {
+    await addDoc(collection(db, "info"), content);
+  } else {
+    await updateDoc(doc(db, "info", id), content);
+  }
+
+  window.location.reload();
+}
+
+function deleteContent() {
+  $(".input-form").toggle();
+  mode = "add";
+  id = "";
+  photoInput.val("");
+  nameInput.val("");
+  mbtiInput.val("");
+  tmiInput.val("");
+}
+
 $("#addButton").click(function () {
   $(".input-form").toggle();
   mode = "add";
@@ -38,40 +75,11 @@ $("#inputbtn").click(async function (e) {
     return;
   }
 
-  const photoInput = $(".inputphoto");
-  const nameInput = $(".inputname");
-  const mbtiInput = $(".inputmbti");
-  const tmiInput = $(".inputtmi");
-
-  const photo = photoInput.val();
-  const name = nameInput.val();
-  const mbti = mbtiInput.val();
-  const tmi = tmiInput.val();
-
   if (e.target.id === "enterBtn") {
-    if (photo === "" || name === "" || mbti === "" || tmi === "") {
-      alert("값을 입력하세요");
-      return;
-    }
-
-    const content = { photo, name, mbti, tmi };
-
-    if (mode === "add") {
-      await addDoc(collection(db, "info"), content);
-    } else {
-      await updateDoc(doc(db, "info", id), content);
-    }
-
-    window.location.reload();
+    await addContent();
   } else if (e.target.id === "cancelBtn") {
-    $(".input-form").toggle();
-    mode = "add";
+    deleteContent();
   }
-
-  photoInput.val("");
-  nameInput.val("");
-  mbtiInput.val("");
-  tmiInput.val("");
 });
 
 $("document").ready(async function () {
@@ -102,8 +110,6 @@ $("document").ready(async function () {
   const btns = $(".card-button");
   const imgs = $(".card-img-top");
 
-  console.log(mode);
-
   btns.click(async function (e) {
     const id = e.target.id;
     await deleteDoc(doc(db, "info", id));
@@ -118,11 +124,6 @@ $("document").ready(async function () {
     const mbti = content[2].innerText;
     const tmi = content[3].innerText;
 
-    const photoInput = $(".inputphoto");
-    const nameInput = $(".inputname");
-    const mbtiInput = $(".inputmbti");
-    const tmiInput = $(".inputtmi");
-
     $(".input-form").toggle();
     mode = "update";
     id = e.target.id;
@@ -132,4 +133,12 @@ $("document").ready(async function () {
     mbtiInput.val(mbti);
     tmiInput.val(tmi);
   });
+});
+
+$(".input-form").keydown(async function (e) {
+  if (e.key === "Enter") {
+    await addContent();
+  } else if (e.key === "Escape") {
+    deleteContent();
+  }
 });
