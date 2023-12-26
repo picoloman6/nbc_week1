@@ -61,10 +61,22 @@ $("document").ready(async function () {
         <h6 class="card-title ${v.id}">${name}</h6>
         <p class="card-text text-list ${v.id}">${content}</p>
         <button id="${v.id}" class="update-button">수정</button>
+        <button id="${v.id}" class="delect-button">삭제</button>
       </div>
     `;
     $("#card").append(temp_html);
   });
+
+
+
+  const delBtns = $(".delect-button");
+
+  delBtns.click(async function (e) {
+    const id = e.target.id;
+    await deleteDoc(doc(db, "comment", id));
+    window.location.reload();
+  });
+
 
   const updateBtns = $(".update-button");
 
@@ -89,3 +101,5 @@ $("document").ready(async function () {
     id = e.target.id;
   });
 });
+
+
