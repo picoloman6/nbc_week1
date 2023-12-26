@@ -1,109 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>오월</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer type="module" src="./script.js"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-        <div class="container-fluid py-5">
-          <div class="maincontent">
-            <p><a href="#">오 월</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
+<head>
+	<title>오월</title>
 
-    <div class="container">
-      <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-          <li id="addButton" class="nav-item">
-            <button href="#" class="nav-link active">추가하기</button>
-          </li>
-          <li id="addButton" class="nav-item">
-            <a href="./index2.html" class="nav-link">방명록</a>
-          </li>
-        </ul>
-      </header>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+	<link rel="stylesheet" href="./style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script defer type="module" src="./script.js"></script>
+</head>
 
-      <div class="input-form">
-        <div class="form-floating mb-3">
-          <input
-            class="form-control inputphoto"
-            id="floatingInput"
-            autocomplete="off"
-          />
-          <label for="floatingInput">사진</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            class="form-control inputname"
-            id="floatingInput"
-            autocomplete="off"
-          />
-          <label for="floatingInput">이름</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            class="form-control inputmbti"
-            id="floatingInput"
-            autocomplete="off"
-          />
-          <label for="floatingInput">MBTI</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            class="form-control inputtmi"
-            id="floatingInput"
-            autocomplete="off"
-          />
-          <label for="floatingInput">TMI</label>
-        </div>
-        <div id="inputbtn" class="input-form-btn">
-          <button id="enterBtn" type="button" class="btn btn-dark">입력</button>
-          <button id="cancelBtn" type="button" class="btn btn-outline-dark">
-            취소
-          </button>
-        </div>
-      </div>
+<body>
+	<div class="main">
+		<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+			<div class="container-fluid py-5">
+				<div class="maincontent">
+					<p><a href="#">오 월</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-      <!-- 카드 입력 영역[S] -->
-      <div class="card-wrap">
-        <div id="card" class="row row-cols-1 row-cols-md-2 g-4"></div>
-      </div>
-    </div>
+	<div class="container">
+		<header class="d-flex justify-content-center py-3">
+			<ul class="nav nav-pills">
+				<li id="addButton" class="nav-item">
+					<button href="#" class="nav-link active">추가하기</button>
+				</li>
+				<li id="addButton" class="nav-item">
+					<a href="./index2.html" class="nav-link">방명록</a>
+				</li>
+			</ul>
+		</header>
 
-    <div class="secondcard">
-      <div class="card text-bg-light mb-3" style="max-width: 18rem">
-        <div class="card-body">
-          <h5 class="card-title secondcard-title">목표</h5>
-          <p class="card-text secondcard-text">
-            사전 강의를 다 듣자! <br />
-            깃 사용에 익숙해지자! <br />
-            미니 프로젝트를 만들자! <br />
-            수료 후 5월에 취업하자!
-          </p>
-        </div>
-      </div>
-      <div class="card text-bg-light mb-3" style="max-width: 18rem">
-        <div class="card-body">
-          <h5 class="card-title secondcard-title">규칙</h5>
-          <p class="card-text secondcard-text">
-            모르는 것은 물어보자!<br />
-            존댓말을 사용하자!
-          </p>
-        </div>
-      </div>
-    </div>
-  </body>
+		<div class="input-form">
+			<div class="form-floating mb-3">
+				<input class="form-control inputphoto" id="floatingInput" autocomplete="off" />
+				<label for="floatingInput">사진</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input class="form-control inputname" id="floatingInput" autocomplete="off" />
+				<label for="floatingInput">이름</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input class="form-control inputmbti" id="floatingInput" autocomplete="off" />
+				<label for="floatingInput">MBTI</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input class="form-control inputtmi" id="floatingInput" autocomplete="off" />
+				<label for="floatingInput">TMI</label>
+			</div>
+			<div id="inputbtn" class="input-form-btn">
+				<button id="enterBtn" type="button" class="btn btn-dark">입력</button>
+				<button id="cancelBtn" type="button" class="btn btn-outline-dark">
+					취소
+				</button>
+			</div>
+		</div>
+
+		<!-- 카드 입력 영역[S] -->
+		<div class="card-wrap">
+			<div id="card" class="row row-cols-1 row-cols-md-2 g-4"></div>
+		</div>
+	</div>
+
+	<div class="secondcard">
+		<div class="card text-bg-light mb-3" style="max-width: 18rem">
+			<div class="card-body">
+				<h5 class="card-title secondcard-title">목표</h5>
+				<p class="card-text secondcard-text">
+					사전 강의를 다 듣자! <br />
+					깃 사용에 익숙해지자! <br />
+					미니 프로젝트를 만들자! <br />
+					수료 후 5월에 취업하자!
+				</p>
+			</div>
+		</div>
+		<div class="card text-bg-light mb-3" style="max-width: 18rem">
+			<div class="card-body">
+				<h5 class="card-title secondcard-title">규칙</h5>
+				<p class="card-text secondcard-text">
+					모르는 것은 물어보자!<br />
+					존댓말을 사용하자!
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+
 </html>
