@@ -192,6 +192,10 @@
   font-size: 16px;
 }
 
+.hidden {
+  display: none;
+}
+
 /*------- responsive --------*/
 @media (min-width: 768px) {
   .row-cols-md-2 > * {
