@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Noto+Sans+KR&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Diphylleia&family=Noto+Sans+KR&display=swap");
 
 .main {
   color: rgb(232, 17, 17);
@@ -19,7 +19,7 @@
   text-shadow: 6px 2px 2px gray;
   font-weight: bold;
   font-size: 75px;
-  font-family: 'Diphylleia', serif;
+  font-family: "Diphylleia", serif;
   color: #a2dc6d;
   text-decoration: none;
 }
@@ -62,11 +62,16 @@
   justify-content: center;
   align-items: center;
 }
+
 .card-img,
 .card-img-bottom,
 .card-img-top {
   height: 250px;
   object-fit: cover;
+}
+
+.card-img-top {
+  cursor: pointer;
 }
 
 .card-wrap {
