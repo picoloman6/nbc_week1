@@ -144,7 +144,7 @@ $("document").ready(async function () {
   });
 });
 
-$(".input-form").keydown(async function (e) {
+$("body").keydown(async function (e) {
   if (e.key === "Enter") {
     await addContent();
   } else if (e.key === "Escape") {
