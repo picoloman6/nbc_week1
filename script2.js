@@ -61,31 +61,39 @@ $("document").ready(async function () {
         <h6 class="card-title ${v.id}">${name}</h6>
         <p class="card-text text-list ${v.id}">${content}</p>
         <button id="${v.id}" class="update-button">수정</button>
+        <button id="${v.id}" class="delete-button">삭제</button>
       </div>
     `;
     $("#card").append(temp_html);
   });
 
   const updateBtns = $(".update-button");
+  const deletebtn = $(".delete-button");
 
-  updateBtns.click(function (e) {
-    // 1. id 가져오기
-    const contents = $(`.${e.target.id}`);
+  deletebtn.click(async function (e) {
+    const id = e.target.id;
+    await deleteDoc(doc(db, "comment", id));
+    window.location.reload();
 
-    // 2. 내용 가져오기
-    const name = contents[0].innerText;
-    const comment = contents[1].innerText;
+    updateBtns.click(function (e) {
+      // 1. id 가져오기
+      const contents = $(`.${e.target.id}`);
 
-    // 3. 인풋 가져오기
-    const nameInput = $("#exampleFormControlInput1");
-    const commentInput = $("#exampleFormControlInput2");
+      // 2. 내용 가져오기
+      const name = contents[0].innerText;
+      const comment = contents[1].innerText;
 
-    // 4. 인풋에 내용 집어 넣기
-    nameInput.val(name);
-    commentInput.val(comment);
+      // 3. 인풋 가져오기
+      const nameInput = $("#exampleFormControlInput1");
+      const commentInput = $("#exampleFormControlInput2");
 
-    // 5. 수정 모드로 바꿔주기
-    mod = "update";
-    id = e.target.id;
+      // 4. 인풋에 내용 집어 넣기
+      nameInput.val(name);
+      commentInput.val(comment);
+
+      // 5. 수정 모드로 바꿔주기
+      mod = "update";
+      id = e.target.id;
+    });
   });
 });
