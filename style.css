@@ -126,28 +126,49 @@
 }
 
 .comment-window {
+  width: 90%;
+  min-width: 800px;
+  margin-top: 15px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 95%;
-  margin-top: 15px;
 }
 
 .comment-label {
-  width: 20%;
+  width: 15%;
   text-align: center;
   font-weight: 700;
   font-size: 18px;
 }
 
+.comment-input {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.comment-input > label {
+  font-size: 13px;
+  color: gray;
+  margin-left: 4px;
+}
+
+.comment-input > input {
+  border: none;
+  width: 95%;
+  margin: 0 4px 0 4px;
+}
+
+.comment-input > input:focus {
+  outline: none;
+}
+
 .comment-name {
   width: 15%;
-  height: 38px;
 }
 
 .comment-comment {
-  width: 45%;
-  height: 38px;
+  width: 55%;
 }
 
 /*------- responsive --------*/

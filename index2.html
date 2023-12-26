@@ -37,9 +37,15 @@
       </header>
       <div class="mb-3 comment-window">
         <label class="comment-label">방명록 남기기</label>
-        <input class="comment-name" placeholder="이름" />
-        <input class="comment-comment" placeholder="내용" />
-        <button type="button" class="btn btn-dark">입력</button>
+        <div class="comment-input comment-name">
+          <label>이름</label>
+          <input autocomplete="off" />
+        </div>
+        <div class="comment-input comment-comment">
+          <label>내용</label>
+          <input autocomplete="off" />
+        </div>
+        <button id="enterBtn" type="button" class="btn btn-dark">입력</button>
       </div>
     </div>
   </body>

@@ -31,7 +31,6 @@ let id = "";
 $("#addButton").click(function () {
   $(".input-form").toggle();
   mode = "add";
-  console.log(mode);
 });
 
 $("#inputbtn").click(async function (e) {
