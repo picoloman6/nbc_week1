@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Diphylleia&family=Noto+Sans+KR&display=swap");
 
 .main {
-  background-image: url('https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large');
+  background-image: url("https://pbs.twimg.com/media/DsNHKslVYAAtXwe.jpg:large");
   background-position: center;
   background-size: cover;
 }
@@ -41,6 +41,7 @@
   border: 1px solid black;
   border-radius: 5px;
 }
+
 .input-form-btn {
   display: flex;
   justify-content: space-between;
@@ -48,6 +49,19 @@
 
 .btn {
   width: 100px;
+}
+
+.card-title {
+  height: 30%;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+.card-text {
+  height: 70%;
+  font-size: 18px;
+  text-align: center;
 }
 
 .secondcard {
@@ -67,17 +81,19 @@
   height: 300px;
 }
 
-.card-title {
-  height: 30%;
+.secondcard-title {
   font-weight: 700;
-  font-size: 24px;
+  font-size: 26px;
   text-align: center;
+  margin-top: 22px;
+  margin-bottom: 25px;
 }
 
-.card-text {
+.secondcard-text {
   height: 70%;
   font-size: 18px;
   text-align: center;
+  line-height: 250%;
 }
 
 .card-img,
@@ -123,6 +139,55 @@
   background: red;
   color: white;
   border: none;
+}
+
+.comment-window {
+  width: 90%;
+  min-width: 800px;
+  margin-top: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-label {
+  width: 15%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.comment-input {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.comment-input > label {
+  font-size: 13px;
+  color: #ced4da;
+  margin-left: 4px;
+}
+
+.comment-input > input {
+  border: none;
+  width: 95%;
+  margin: 0 4px 0 4px;
+}
+
+.comment-input > input:focus {
+  outline: none;
+}
+
+.comment-name {
+  width: 15%;
+}
+
+.comment-comment {
+  width: 55%;
+}
+.card-text.text-list {
+  font-size: 16px;
 }
 
 /*------- responsive --------*/
