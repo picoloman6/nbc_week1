@@ -143,13 +143,13 @@
 }
 
 .comment-input {
-  border: 1px solid gray;
+  border: 1px solid #ced4da;
   border-radius: 5px;
 }
 
 .comment-input > label {
   font-size: 13px;
-  color: gray;
+  color: #ced4da;
   margin-left: 4px;
 }
 
