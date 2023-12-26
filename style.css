@@ -147,7 +147,6 @@
   width: 90%;
   min-width: 800px;
   margin-top: 15px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -223,16 +222,15 @@
   padding: 15px 20px;
 }
 
-
-
-
-.hidden {
-  display: none;
-}
-
 .current-page {
   font-weight: 900;
 }
+
+.hidden{
+  display: none;
+}
+
+
 
 /*------- responsive --------*/
 @media (min-width: 768px) {
