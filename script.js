@@ -66,7 +66,7 @@ function deleteContent() {
 }
 
 $("#addButton").click(function () {
-  $(".input-form").toggle();
+  $(".input-form").toggleClass("hidden");
   mode = "add";
 });
 
@@ -118,13 +118,13 @@ $("document").ready(async function () {
 
   imgs.click(async function (e) {
     const content = $(`.${e.target.id}`);
+    const inputForm = $(".input-form");
 
     const photo = content[0].src;
     const name = content[1].innerText;
     const mbti = content[2].innerText;
     const tmi = content[3].innerText;
 
-    $(".input-form").toggle();
     mode = "update";
     id = e.target.id;
 
@@ -132,6 +132,10 @@ $("document").ready(async function () {
     nameInput.val(name);
     mbtiInput.val(mbti);
     tmiInput.val(tmi);
+
+    if (inputForm.hasClass("hidden")) {
+      inputForm.toggleClass("hidden");
+    }
   });
 });
 

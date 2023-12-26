@@ -34,7 +34,7 @@
   padding: 20px;
   margin-bottom: 20px;
 
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
 
@@ -55,7 +55,7 @@
   font-weight: 700;
   font-size: 24px;
   text-align: center;
-  margin:0;
+  margin: 0;
 }
 
 .card-text {
@@ -117,7 +117,6 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-
 }
 
 .card-list .card {
@@ -192,56 +191,54 @@
   font-size: 16px;
 }
 
-.mb-3.board_list{
+.mb-3.board_list {
   width: 90% !important;
   padding: 10px 0;
 }
 
-.board_title{
+.board_title {
   display: flex;
   gap: 10px;
   line-height: 34px;
 }
 
-.board_btn{
+.board_btn {
   margin-left: auto;
 }
 
-.board_btn > button{
+.board_btn > button {
   border: none;
   background-color: transparent;
   text-decoration: underline;
   color: #888;
 }
 
-.board_btn > button:hover{
+.board_btn > button:hover {
   color: red;
 }
 
-.card-body{
+.card-body {
   padding: 15px 20px;
 }
 
-.card-body.main-card{
+.card-body.main-card {
   box-sizing: border-box;
-  border-top: 1px solid rgba(0,0,0,.125);
-
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .current-page {
   font-weight: 900;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.team_name{
+.team_name {
   color: #0d6efd;
   font-size: 24px;
   font-weight: bold;
 }
-
 
 /*------- responsive --------*/
 @media (min-width: 768px) {
