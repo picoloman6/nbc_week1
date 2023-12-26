@@ -11,9 +11,7 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer type="module" src="./script2.js"></script>
   </head>
-
   <body>
     <div class="main">
       <div class="p-5 mb-4 bg-body-tertiary rounded-3">
@@ -29,29 +27,37 @@
       <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
           <li id="addButton" class="nav-item">
-            <button class="nav-link active">추가하기</button>
-          </li>
-          <li id="addButton" class="nav-item">
             <a href="./index.html" class="nav-link">팀원 소개</a>
           </li>
           <li id="addButton" class="nav-item">
-            <a href="./index3.html" class="nav-link">팀 소개</a>
+            <a href="./index2.html" class="nav-link">방명록</a>
           </li>
         </ul>
       </header>
-      <div class="mb-3 comment-window">
-        <label class="comment-label">방명록 남기기</label>
-        <div class="comment-input comment-name">
-          <label>이름</label>
-          <input id="exampleFormControlInput1" autocomplete="off" />
+      <div class="secondcard">
+        <div class="secondcard-content">
+          <h5 class="secondcard-title">팀 소개</h5>
+          <p class="secondcard-text">
+            수료 후 5월에는 팀원 모두 취업할 수 있도록 팀명을 '오월'로 결정!
+          </p>
         </div>
-        <div class="comment-input comment-comment">
-          <label>내용</label>
-          <input id="exampleFormControlInput2" autocomplete="off" />
+        <div class="secondcard-content">
+          <h5 class="secondcard-title">목표</h5>
+          <p class="secondcard-text">
+            1. 사전 강의를 다 듣자! <br />
+            2. 깃 사용에 익숙해지자! <br />
+            3. 미니 프로젝트를 만들자! <br />
+            4. 수료 후 5월에 취업하자!
+          </p>
         </div>
-        <button id="enterbtn" type="button" class="btn btn-dark">입력</button>
+        <div class="secondcard-content">
+          <h5 class="secondcard-title">규칙</h5>
+          <p class="secondcard-text">
+            1. 모르는 것은 물어보자!<br />
+            2. 존댓말을 사용하자!
+          </p>
+        </div>
       </div>
-      <div id="card" class="card w-75 mb-3"></div>
     </div>
   </body>
 </html>

@@ -60,22 +60,32 @@ $('document').ready(async function () {
         <h6 class="card-title ${v.id}">${name}</h6>
         <p class="card-text text-list ${v.id}">${content}</p>
         <button id="${v.id}" class="update-button">수정</button>
-        <button id="${v.id}" class="del-button">삭제</button>
+        <button id="${v.id}" class="delect-button">삭제</button>
       </div>
     `;
     $('#card').append(temp_html);
   });
 
-  const updateBtns = $('.update-button');
-  const delBtn = $('.del-button'); //삭제버튼 변수할당
 
-  // 삭제버튼 클릭시 db삭제 이벤트
-  delBtn.click(async function (e) {
+
+  const delBtns = $(".delect-button");
+
+  delBtns.click(async function (e) {
     const id = e.target.id;
-    await deleteDoc(doc(db, 'comment', id));
+    await deleteDoc(doc(db, "comment", id));
     window.location.reload();
   });
 
+
+  const updateBtns = $(".update-button");
+  const deletebtn = $(".delete-button");
+
+  deletebtn.click(async function (e) {
+    const id = e.target.id;
+    await deleteDoc(doc(db, "comment", id));
+    window.location.reload();
+
+  });
   updateBtns.click(function (e) {
     // 1. id 가져오기
     const contents = $(`.${e.target.id}`);
@@ -85,15 +95,17 @@ $('document').ready(async function () {
     const comment = contents[1].innerText;
 
     // 3. 인풋 가져오기
-    const nameInput = $('#exampleFormControlInput1');
-    const commentInput = $('#exampleFormControlInput2');
+    const nameInput = $("#exampleFormControlInput1");
+    const commentInput = $("#exampleFormControlInput2");
 
     // 4. 인풋에 내용 집어 넣기
     nameInput.val(name);
     commentInput.val(comment);
 
     // 5. 수정 모드로 바꿔주기
-    mod = 'update';
+    mod = "update";
     id = e.target.id;
   });
 });
+
+
