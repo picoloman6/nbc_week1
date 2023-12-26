@@ -30,13 +30,7 @@ const db = getFirestore(app);
 let mod = "add";
 let id = "";
 
-
-$("#addButton").click(function () {
-  $("#comment-window").toggleClass("hidden");
-});
-
-//파이어베이스에 데이터 넣기
-$("#enterbtn").click(async function () {
+async function addContent() {
   const name = $("#exampleFormControlInput1").val();
   const content = $("#exampleFormControlInput2").val();
   const date = Date.now();
@@ -51,6 +45,15 @@ $("#enterbtn").click(async function () {
   }
 
   window.location.reload();
+}
+
+$("#addButton").click(function () {
+  $("#comment-window").toggleClass("hidden");
+});
+
+//파이어베이스에 데이터 넣기
+$("#enterbtn").click(async function () {
+  await addContent();
 });
 
 $("document").ready(async function () {
@@ -106,8 +109,14 @@ $("document").ready(async function () {
 
     const commentWindow = $("#comment-window");
 
-    if(commentWindow.hasClass("hidden")){
+    if (commentWindow.hasClass("hidden")) {
       commentWindow.toggleClass("hidden");
     }
   });
+});
+
+$("body").keydown(async function (e) {
+  if (e.key === "Enter") {
+    await addContent();
+  }
 });
