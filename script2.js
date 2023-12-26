@@ -46,7 +46,6 @@ $('#enterbtn').click(async function () {
     await updateDoc(doc(db, 'comment', id), document);
   }
 
-  alert('작성완료');
   window.location.reload();
 });
 
