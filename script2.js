@@ -33,7 +33,7 @@ $('document').ready(async function () {
 
     const temp_html = `
   <div class="card-body">
-    <h5 class="card-title" ${v.id}>C${name}</h5>
+    <h5 class="card-title" ${v.id}>${name}</h5>
     <p class="card-text" ${v.id}>
     ${content}</p>
   </div>
