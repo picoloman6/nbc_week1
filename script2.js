@@ -58,10 +58,14 @@ $('document').ready(async function () {
 
     const temp_html = `
       <div class="card-body">
-        <h6 class="card-title ${v.id}">${name}</h6>
-        <p class="card-text text-list ${v.id}">${content}</p>
-        <button id="${v.id}" class="update-button">수정</button>
-        <button id="${v.id}" class="delect-button">삭제</button>
+        <div class="board_title">
+            <h6 class="card-title ${v.id}">${name}</h6>
+            <p class="card-text text-list ${v.id}">${content}</p>
+            <div class="board_btn">
+              <button id="${v.id}" class="update-button">수정</button>
+              <button id="${v.id}" class="delect-button">삭제</button>
+            </div>
+        </div>
       </div>
     `;
     $('#card').append(temp_html);

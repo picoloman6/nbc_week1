@@ -52,10 +52,10 @@
 }
 
 .card-title {
-  height: 30%;
   font-weight: 700;
   font-size: 24px;
   text-align: center;
+  margin:0;
 }
 
 .card-text {
@@ -117,6 +117,7 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+
 }
 
 .card-list .card {
@@ -191,6 +192,39 @@
 .card-text.text-list {
   font-size: 16px;
 }
+
+.mb-3.board_list{
+  width: 90% !important;
+  padding: 10px 0;
+}
+
+.board_title{
+  display: flex;
+  gap: 10px;
+  line-height: 34px;
+}
+
+.board_btn{
+  margin-left: auto;
+}
+
+.board_btn > button{
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: #888;
+}
+
+.board_btn > button:hover{
+  color: red;
+}
+
+.card-body{
+  padding: 15px 20px;
+}
+
+
+
 
 /*------- responsive --------*/
 @media (min-width: 768px) {
