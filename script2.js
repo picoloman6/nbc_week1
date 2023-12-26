@@ -31,10 +31,10 @@ $("#addButton").click(function () {
 
 //파이어베이스에 데이터 넣기
 $("#enterbtn").click(async function () {
-  let name = $("#exampleFormControlInput1").val();
-  let commends = $("#exampleFormControlInput2").val();
+  const name = $("#exampleFormControlInput1").val();
+  const content = $("#exampleFormControlInput2").val();
 
-  let doc = { name: name, commends: commends };
+  const doc = { name, content };
   await addDoc(collection(db, "comment"), doc);
   alert("작성완료");
   window.location.reload();
