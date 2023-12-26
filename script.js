@@ -56,7 +56,7 @@ async function addContent() {
 }
 
 function deleteContent() {
-  $(".input-form").toggle();
+  $(".input-form").toggleClass("hidden");
   mode = "add";
   id = "";
   photoInput.val("");
@@ -68,6 +68,11 @@ function deleteContent() {
 $("#addButton").click(function () {
   $(".input-form").toggleClass("hidden");
   mode = "add";
+  id = "";
+  photoInput.val("");
+  nameInput.val("");
+  mbtiInput.val("");
+  tmiInput.val("");
 });
 
 $("#inputbtn").click(async function (e) {
