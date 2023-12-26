@@ -8,6 +8,8 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  query,
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 // Firebase 구성 정보 설정
@@ -36,8 +38,9 @@ $("#addButton").click(function () {
 $("#enterbtn").click(async function () {
   const name = $("#exampleFormControlInput1").val();
   const content = $("#exampleFormControlInput2").val();
+  const date = Date.now();
 
-  const document = { name, content };
+  const document = { name, content, date };
 
   // 6. 등록, 수정 나누기
   if (mod === "add") {
@@ -50,7 +53,9 @@ $("#enterbtn").click(async function () {
 });
 
 $("document").ready(async function () {
-  const docs = await getDocs(collection(db, "comment"));
+  const docs = await getDocs(
+    query(collection(db, "comment"), orderBy("date", "desc"))
+  );
 
   docs.forEach((v) => {
     const { name, content } = v.data();
