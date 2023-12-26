@@ -34,8 +34,12 @@ async function addContent() {
   const name = $("#exampleFormControlInput1").val();
   const content = $("#exampleFormControlInput2").val();
   const date = Date.now();
-
   const document = { name, content, date };
+
+  if (name === "" || content === "") {
+    alert("값을 입력하세요");
+    return;
+  }
 
   // 6. 등록, 수정 나누기
   if (mod === "add") {
