@@ -66,19 +66,20 @@
 
 .secondcard {
   margin: 120px;
-  flex-wrap: wrap;
   margin-top: 0;
 
   gap: 30px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.secondcard > .card {
+.secondcard-content {
   width: 300px;
   height: 300px;
+
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 
 .secondcard-title {
