@@ -222,6 +222,12 @@
   padding: 15px 20px;
 }
 
+.card-body.main-card{
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0,0,0,.125);
+
+}
+
 .current-page {
   font-weight: 900;
 }
@@ -230,6 +236,11 @@
   display: none;
 }
 
+.team_name{
+  color: #0d6efd;
+  font-size: 24px;
+  font-weight: bold;
+}
 
 
 /*------- responsive --------*/
