@@ -35,3 +35,20 @@ $('#enterbtn').click(async function () {
   alert('작성완료');
   window.location.reload();
 });
+
+$('document').ready(async function () {
+  const docs = await getDocs(collection(db, 'comment'));
+
+  docs.forEach((v) => {
+    const { name, content } = v.data();
+
+    const temp_html = `
+  <div class="card-body">
+    <h5 class="card-title" ${v.id}>C${name}</h5>
+    <p class="card-text" ${v.id}>
+    ${content}</p>
+  </div>
+`;
+    $('#card').append(temp_html);
+  });
+});
