@@ -65,6 +65,7 @@ $("#inputbtn").click(async function (e) {
     window.location.reload();
   } else if (e.target.id === "cancelBtn") {
     $(".input-form").toggle();
+    mode = "add";
   }
 
   photoInput.val("");
