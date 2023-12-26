@@ -41,6 +41,7 @@
   border: 1px solid black;
   border-radius: 5px;
 }
+
 .input-form-btn {
   display: flex;
   justify-content: space-between;
@@ -67,7 +68,7 @@
   height: 300px;
 }
 
-.card-title {
+.secondcard-title {
   font-weight: 700;
   font-size: 26px;
   text-align: center;
@@ -75,7 +76,7 @@
   margin-bottom: 25px;
 }
 
-.card-text {
+.secondcard-text {
   height: 70%;
   font-size: 18px;
   text-align: center;
