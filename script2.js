@@ -28,3 +28,30 @@ const db = getFirestore(app);
 $("#addButton").click(function () {
   $(".comment-window").toggle();
 });
+
+//파이어베이스에 데이터 넣기
+$("#enterbtn").click(async function () {
+  let name = $("#exampleFormControlInput1").val();
+  let commends = $("#exampleFormControlInput2").val();
+
+  let doc = { name: name, commends: commends };
+  await addDoc(collection(db, "comment"), doc);
+  alert("작성완료");
+  window.location.reload();
+});
+
+$("document").ready(async function () {
+  const docs = await getDocs(collection(db, "comment"));
+
+  docs.forEach((v) => {
+    const { name, content } = v.data();
+
+    const temp_html = `
+      <div class="card-body">
+        <h6 class="card-title" ${v.id}>${name}</h6>
+        <p class="card-text text-list" ${v.id}>${content}</p>
+      </div>
+    `;
+    $("#card").append(temp_html);
+  });
+});

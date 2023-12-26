@@ -51,6 +51,19 @@
   width: 100px;
 }
 
+.card-title {
+  height: 30%;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+.card-text {
+  height: 70%;
+  font-size: 18px;
+  text-align: center;
+}
+
 .secondcard {
   margin: 120px;
   flex-wrap: wrap;
@@ -172,6 +185,9 @@
 
 .comment-comment {
   width: 55%;
+}
+.card-text.text-list {
+  font-size: 16px;
 }
 
 /*------- responsive --------*/
