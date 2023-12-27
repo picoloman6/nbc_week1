@@ -8,6 +8,8 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  query,
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 // Firebase 구성 정보 설정
@@ -40,15 +42,16 @@ let id = "";
 async function addContent() {
   const photo = photoInput.val();
   const name = nameInput.val();
-  const mbti = mbtiInput.val();
+  const mbti = mbtiInput.val().toUpperCase();
   const tmi = tmiInput.val();
+  const date = Date.now();
 
   if (photo === "" || name === "" || mbti === "" || tmi === "") {
     alert("값을 입력하세요");
     return;
   }
 
-  const content = { photo, name, mbti, tmi };
+  const content = { date, photo, name, mbti, tmi };
 
   if (mode === "add") {
     await addDoc(collection(db, "info"), content);
@@ -95,7 +98,9 @@ $("#inputbtn").click(async function (e) {
 
 // DOM 생성 후 데이터 받아와서 렌더링
 $("document").ready(async function () {
-  const docs = await getDocs(collection(db, "info"));
+  const docs = await getDocs(
+    query(collection(db, "info"), orderBy("date", "desc"))
+  );
 
   docs.forEach((v) => {
     const { photo, name, mbti, tmi } = v.data();
