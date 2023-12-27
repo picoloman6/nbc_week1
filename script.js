@@ -11,6 +11,12 @@ import {
   query,
   orderBy,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import {
+  getStorage,
+  ref,
+  getDownloadURL,
+  uploadBytes,
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
 
 // Firebase 구성 정보 설정
 const firebaseConfig = {
@@ -34,24 +40,34 @@ const mbtiInput = $(".inputmbti");
 const tmiInput = $(".inputtmi");
 const inputForm = $(".input-form");
 
+// Firebase Storage
+const storage = getStorage();
+
 // 전역 상태
 let mode = "add";
 let id = "";
 
 // 이벤트 함수
 async function addContent() {
-  const photo = photoInput.val();
+  const photo = photoInput[0].files;
   const name = nameInput.val();
   const mbti = mbtiInput.val().toUpperCase();
   const tmi = tmiInput.val();
   const date = Date.now();
 
-  if (photo === "" || name === "" || mbti === "" || tmi === "") {
+  if (photo.length === 0 || name === "" || mbti === "" || tmi === "") {
     alert("값을 입력하세요");
     return;
   }
 
-  const content = { date, photo, name, mbti, tmi };
+  // storage에 사진 파일 저장하기
+  const photoPath = `images/${date}${photo[0].name}`;
+  const photoRef = ref(storage, photoPath);
+  const blob = new Blob(photo);
+  await uploadBytes(photoRef, blob);
+
+  // photo는 storage의 파일 경로
+  const content = { date, photo: photoPath, name, mbti, tmi };
 
   if (mode === "add") {
     await addDoc(collection(db, "info"), content);
@@ -102,13 +118,17 @@ $("document").ready(async function () {
     query(collection(db, "info"), orderBy("date", "desc"))
   );
 
-  docs.forEach((v) => {
+  docs.forEach(async (v) => {
     const { photo, name, mbti, tmi } = v.data();
+
+    // storage에 저장된 사진 파일 가져오기
+    const forestRef = ref(storage, photo);
+    const photoPath = await getDownloadURL(forestRef);
 
     const temp_html = `
         <div class="col card-list">
             <div class="card">
-                <img id="${v.id}" src="${photo}" class="card-img-top ${v.id}" alt="..." />
+                <img id="${v.id}" src="${photoPath}" class="card-img-top ${v.id}" alt="..." />
                 <div class="card-body main-card">
                 <div class="card-header">
                     <div class="header-wrapper">

@@ -270,6 +270,16 @@
   font-size: 12px;
 }
 
+input[type="file"]::file-selector-button {
+  width: 80px;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 10px;
+  border: 1px solid black;
+}
+
 /*------- responsive --------*/
 @media (min-width: 768px) {
   .row-cols-md-2 > * {
