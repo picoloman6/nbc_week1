@@ -55,19 +55,31 @@ async function addContent() {
   const tmi = tmiInput.val();
   const date = Date.now();
 
-  if (photo.length === 0 || name === "" || mbti === "" || tmi === "") {
-    alert("값을 입력하세요");
-    return;
+  if (mode === "add") {
+    if (photo.length === 0 || name === "" || mbti === "" || tmi === "") {
+      alert("값을 입력하세요");
+      return;
+    }
+  } else if (mode === "update") {
+    if (name === "" || mbti === "" || tmi === "") {
+      alert("값을 입력하세요");
+      return;
+    }
   }
 
   // storage에 사진 파일 저장하기
-  const photoPath = `images/${date}${photo[0].name}`;
-  const photoRef = ref(storage, photoPath);
-  const blob = new Blob(photo);
-  await uploadBytes(photoRef, blob);
+  let photoPath;
+  let photoRef;
+  let blob;
+  const content = { date, name, mbti, tmi };
 
-  // photo는 storage의 파일 경로
-  const content = { date, photo: photoPath, name, mbti, tmi };
+  if (photo.length === 1) {
+    photoPath = `images/${date}${photo[0].name}`;
+    photoRef = ref(storage, photoPath);
+    blob = new Blob(photo);
+    await uploadBytes(photoRef, blob);
+    content.photo = photoPath;
+  }
 
   if (mode === "add") {
     await addDoc(collection(db, "info"), content);
@@ -165,21 +177,18 @@ $("document").ready(async function () {
     window.location.reload();
   });
 
-  // 데이서 수정 이벤트
+  // 데이터 수정 이벤트
   imgs.click(async function (e) {
+    alert("수정 시에는 사진을 교체하지 않아도 됩니다.");
     const content = $(`.${e.target.id}`);
 
-    const photo = content[0].src;
     const name = content[1].innerText;
     const mbti = content[2].innerText;
     const tmi = content[3].innerText;
 
-    console.log(content[0].src);
-
     mode = "update";
     id = e.target.id;
 
-    // photoInput.val(photo);
     nameInput.val(name);
     mbtiInput.val(mbti);
     tmiInput.val(tmi);
