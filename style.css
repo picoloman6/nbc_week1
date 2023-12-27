@@ -244,6 +244,10 @@
   width: 70px;
 }
 
+.comment-date {
+  font-size: 12px;
+}
+
 /*------- responsive --------*/
 @media (min-width: 768px) {
   .row-cols-md-2 > * {

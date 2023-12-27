@@ -74,12 +74,20 @@ $("document").ready(async function () {
   );
 
   docs.forEach((v) => {
-    const { name, content } = v.data();
+    const { name, content, date } = v.data();
+    const newDate = new Date(date);
+    const month = `${newDate.getMonth() + 1}.`;
+    const mDate = `${newDate.getDate()}.`;
+    const mHour = `${newDate.getHours()}:`;
+    const mMinute = `${newDate.getMinutes()}`;
 
     const temp_html = `
       <div class="card-body">
         <div class="board_title">
-            <h6 class="card-title ${v.id}">${name}</h6>
+            <div>
+              <h6 class="card-title ${v.id}">${name}</h6>
+              <span class="comment-date">${month}${mDate} ${mHour}${mMinute}</span>
+            </div>
             <p class="card-text text-list ${v.id}">${content}</p>
             <div class="board_btn">
               <button id="${v.id}" class="update-button">수정</button>
