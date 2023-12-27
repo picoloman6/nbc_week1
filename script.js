@@ -114,35 +114,44 @@ $("#inputbtn").click(async function (e) {
 
 // DOM 생성 후 데이터 받아와서 렌더링
 $("document").ready(async function () {
+  // Firestore 데이터 및 storage 사진 가져오기
   const docs = await getDocs(
     query(collection(db, "info"), orderBy("date", "desc"))
   );
 
-  docs.forEach(async (v) => {
-    const { photo, name, mbti, tmi } = v.data();
+  const data = await Promise.all(
+    docs.docs.map(async (v) => {
+      const { photo, name, mbti, tmi } = v.data();
 
-    // storage에 저장된 사진 파일 가져오기
-    const forestRef = ref(storage, photo);
-    const photoPath = await getDownloadURL(forestRef);
+      const forestRef = ref(storage, photo);
+      const photoPath = await getDownloadURL(forestRef);
+
+      return { id: v.id, photoPath, name, mbti, tmi };
+    })
+  );
+
+  // 가져온 데이터로 DOM 생성하기
+  data.forEach((v) => {
+    const { id, photoPath, name, mbti, tmi } = v;
 
     const temp_html = `
-        <div class="col card-list">
-            <div class="card">
-                <img id="${v.id}" src="${photoPath}" class="card-img-top ${v.id}" alt="..." />
-                <div class="card-body main-card">
-                <div class="card-header">
-                    <div class="header-wrapper">
-                      <h5 class="card-title ${v.id}">${name}</h5>
-                      <p class="card-text ${v.id}">${mbti}</p>
-                    </div>
-                    <button id="${v.id}" class="card-button">삭제</button>
+    <div class="col card-list">
+        <div class="card">
+            <img id="${id}" src="${photoPath}" class="card-img-top ${v.id}" alt="..." />
+            <div class="card-body main-card">
+            <div class="card-header">
+                <div class="header-wrapper">
+                  <h5 class="card-title ${id}">${name}</h5>
+                  <p class="card-text ${id}">${mbti}</p>
                 </div>
-                <div class="card-content">
-                  <span class="${v.id}">${tmi}</span>
-                </div>
-                </div>
+                <button id="${id}" class="card-button">삭제</button>
             </div>
-        </div>`;
+            <div class="card-content">
+              <span class="${id}">${tmi}</span>
+            </div>
+            </div>
+        </div>
+    </div>`;
     $("#card").append(temp_html);
   });
 
@@ -165,10 +174,12 @@ $("document").ready(async function () {
     const mbti = content[2].innerText;
     const tmi = content[3].innerText;
 
+    console.log(content[0].src);
+
     mode = "update";
     id = e.target.id;
 
-    photoInput.val(photo);
+    // photoInput.val(photo);
     nameInput.val(name);
     mbtiInput.val(mbti);
     tmiInput.val(tmi);

@@ -65,6 +65,16 @@
   text-align: center;
 }
 
+input[type="file"]::file-selector-button {
+  width: 80px;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 10px;
+  border: 1px solid black;
+}
+
 /* html3 */
 .secondcard {
   margin: 120px;
@@ -272,16 +282,6 @@
 /* script2 */
 .comment-date {
   font-size: 12px;
-}
-
-input[type="file"]::file-selector-button {
-  width: 80px;
-  background: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 10px;
-  border: 1px solid black;
 }
 
 /*------- responsive --------*/
