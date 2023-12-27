@@ -42,7 +42,7 @@ let id = "";
 async function addContent() {
   const photo = photoInput.val();
   const name = nameInput.val();
-  const mbti = mbtiInput.val();
+  const mbti = mbtiInput.val().toUpperCase();
   const tmi = tmiInput.val();
   const date = Date.now();
 
