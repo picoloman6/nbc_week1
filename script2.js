@@ -1,7 +1,7 @@
 // Firebase SDK 라이브러리 가져오기
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import {
+  getFirestore,
   collection,
   addDoc,
   getDocs,
@@ -27,12 +27,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// DOM 요소
+const commentWindow = $("#comment-window");
+const nameInput = $("#exampleFormControlInput1");
+const commentInput = $("#exampleFormControlInput2");
+
+// 전역상태
 let mod = "add";
 let id = "";
 
+// 이벤트 함수
 async function addContent() {
-  const name = $("#exampleFormControlInput1").val();
-  const content = $("#exampleFormControlInput2").val();
+  const name = nameInput.val();
+  const content = commentInput.val();
   const date = Date.now();
   const document = { name, content, date };
 
@@ -52,15 +59,16 @@ async function addContent() {
 }
 
 function deleteContent() {
-  $("#comment-window").toggleClass("hidden");
-  $("#exampleFormControlInput1").val("");
-  $("#exampleFormControlInput2").val("");
+  commentWindow.toggleClass("hidden");
+  nameInput.val("");
+  commentInput.val("");
   mod = "add";
   id = "";
 }
 
+// 추가하기 누르면 입력창 토글
 $("#addButton").click(function () {
-  $("#comment-window").toggleClass("hidden");
+  commentWindow.toggleClass("hidden");
 });
 
 //파이어베이스에 데이터 넣기
@@ -68,6 +76,7 @@ $("#enterbtn").click(async function () {
   await addContent();
 });
 
+// DOM 생성 후 데이터 받아와서 렌더링
 $("document").ready(async function () {
   const docs = await getDocs(
     query(collection(db, "comment"), orderBy("date", "desc"))
@@ -102,12 +111,14 @@ $("document").ready(async function () {
   const updateBtns = $(".update-button");
   const deletebtn = $(".delete-button");
 
+  // 데이터 삭제 이벤트
   deletebtn.click(async function (e) {
     const id = e.target.id;
     await deleteDoc(doc(db, "comment", id));
     window.location.reload();
   });
 
+  // 데이서 수정 이벤트
   updateBtns.click(function (e) {
     // 1. id 가져오기
     const contents = $(`.${e.target.id}`);
@@ -115,10 +126,6 @@ $("document").ready(async function () {
     // 2. 내용 가져오기
     const name = contents[0].innerText;
     const comment = contents[1].innerText;
-
-    // 3. 인풋 가져오기
-    const nameInput = $("#exampleFormControlInput1");
-    const commentInput = $("#exampleFormControlInput2");
 
     // 4. 인풋에 내용 집어 넣기
     nameInput.val(name);
@@ -128,22 +135,24 @@ $("document").ready(async function () {
     mod = "update";
     id = e.target.id;
 
-    const commentWindow = $("#comment-window");
-
     if (commentWindow.hasClass("hidden")) {
       commentWindow.toggleClass("hidden");
     }
   });
 });
 
+// 엔터 누르면 입력, esc 누르면 창 열고 닫히기
 $("body").keydown(async function (e) {
   if (e.key === "Enter") {
-    await addContent();
+    if (!commentWindow.hasClass("hidden")) {
+      await addContent();
+    }
   } else if (e.key === "Escape") {
     deleteContent();
   }
 });
 
+// 취소 버튼 누르면 창 닫히기
 $("#cancelBtn").click(function () {
   deleteContent();
 });
