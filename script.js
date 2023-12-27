@@ -1,7 +1,7 @@
 // Firebase SDK 라이브러리 가져오기
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import {
+  getFirestore,
   collection,
   addDoc,
   getDocs,
@@ -25,14 +25,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-let mode = "add";
-let id = "";
-
+// DOM 요소
 const photoInput = $(".inputphoto");
 const nameInput = $(".inputname");
 const mbtiInput = $(".inputmbti");
 const tmiInput = $(".inputtmi");
+const inputForm = $(".input-form");
 
+// 전역 상태
+let mode = "add";
+let id = "";
+
+// 이벤트 함수
 async function addContent() {
   const photo = photoInput.val();
   const name = nameInput.val();
@@ -56,7 +60,7 @@ async function addContent() {
 }
 
 function deleteContent() {
-  $(".input-form").toggleClass("hidden");
+  inputForm.toggleClass("hidden");
   mode = "add";
   id = "";
   photoInput.val("");
@@ -65,8 +69,9 @@ function deleteContent() {
   tmiInput.val("");
 }
 
+// 추가하기 누르면 입력창 토글
 $("#addButton").click(function () {
-  $(".input-form").toggleClass("hidden");
+  inputForm.toggleClass("hidden");
   mode = "add";
   id = "";
   photoInput.val("");
@@ -75,6 +80,7 @@ $("#addButton").click(function () {
   tmiInput.val("");
 });
 
+//파이어베이스에 데이터 넣기
 $("#inputbtn").click(async function (e) {
   if (e.target.tagName !== "BUTTON") {
     return;
@@ -87,6 +93,7 @@ $("#inputbtn").click(async function (e) {
   }
 });
 
+// DOM 생성 후 데이터 받아와서 렌더링
 $("document").ready(async function () {
   const docs = await getDocs(collection(db, "info"));
 
@@ -115,15 +122,16 @@ $("document").ready(async function () {
   const btns = $(".card-button");
   const imgs = $(".card-img-top");
 
+  // 데이터 삭제 이벤트
   btns.click(async function (e) {
     const id = e.target.id;
     await deleteDoc(doc(db, "info", id));
     window.location.reload();
   });
 
+  // 데이서 수정 이벤트
   imgs.click(async function (e) {
     const content = $(`.${e.target.id}`);
-    const inputForm = $(".input-form");
 
     const photo = content[0].src;
     const name = content[1].innerText;
@@ -144,9 +152,12 @@ $("document").ready(async function () {
   });
 });
 
+// 엔터 누르면 입력, esc 누르면 창 열고 닫히기
 $("body").keydown(async function (e) {
   if (e.key === "Enter") {
-    await addContent();
+    if (!inputForm.hasClass("hidden")) {
+      await addContent();
+    }
   } else if (e.key === "Escape") {
     deleteContent();
   }
