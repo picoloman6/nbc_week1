@@ -49,25 +49,37 @@ let id = "";
 
 // 이벤트 함수
 async function addContent() {
+  // DOM value 가져오기
   const photo = photoInput[0].files;
   const name = nameInput.val();
   const mbti = mbtiInput.val().toUpperCase();
   const tmi = tmiInput.val();
   const date = Date.now();
 
-  if (photo.length === 0 || name === "" || mbti === "" || tmi === "") {
+  // storage에 사진 파일 저장하기
+  let photoPath;
+  let photoRef;
+  let blob;
+  const content = { date, name, mbti, tmi };
+
+  if (name === "" || mbti === "" || tmi === "") {
     alert("값을 입력하세요");
     return;
   }
 
-  // storage에 사진 파일 저장하기
-  const photoPath = `images/${date}${photo[0].name}`;
-  const photoRef = ref(storage, photoPath);
-  const blob = new Blob(photo);
-  await uploadBytes(photoRef, blob);
+  if (mode === "add" && photo.length === 0) {
+    alert("사진을 등록하세요");
+    return;
+  }
 
-  // photo는 storage의 파일 경로
-  const content = { date, photo: photoPath, name, mbti, tmi };
+  // 사진이 있는 경우에만 사진 저장 수행
+  if (photo.length === 1) {
+    photoPath = `images/${date}${photo[0].name}`;
+    photoRef = ref(storage, photoPath);
+    blob = new Blob(photo);
+    await uploadBytes(photoRef, blob);
+    content.photo = photoPath;
+  }
 
   if (mode === "add") {
     await addDoc(collection(db, "info"), content);
@@ -90,13 +102,7 @@ function deleteContent() {
 
 // 추가하기 누르면 입력창 토글
 $("#addButton").click(function () {
-  inputForm.toggleClass("hidden");
-  mode = "add";
-  id = "";
-  photoInput.val("");
-  nameInput.val("");
-  mbtiInput.val("");
-  tmiInput.val("");
+  deleteContent();
 });
 
 //파이어베이스에 데이터 넣기
@@ -114,38 +120,49 @@ $("#inputbtn").click(async function (e) {
 
 // DOM 생성 후 데이터 받아와서 렌더링
 $("document").ready(async function () {
+  // Firestore 데이터 가져오기
   const docs = await getDocs(
     query(collection(db, "info"), orderBy("date", "desc"))
   );
 
-  docs.forEach(async (v) => {
-    const { photo, name, mbti, tmi } = v.data();
+  // Storatge 사진 데이터 URL 가져오기(비동기 처리)
+  const data = await Promise.all(
+    docs.docs.map(async (v) => {
+      const { photo, name, mbti, tmi } = v.data();
 
-    // storage에 저장된 사진 파일 가져오기
-    const forestRef = ref(storage, photo);
-    const photoPath = await getDownloadURL(forestRef);
+      const forestRef = ref(storage, photo);
+      const photoPath = await getDownloadURL(forestRef);
+
+      return { id: v.id, photoPath, name, mbti, tmi };
+    })
+  );
+
+  // 데이터로 DOM 생성하기
+  data.forEach((v) => {
+    const { id, photoPath, name, mbti, tmi } = v;
 
     const temp_html = `
-        <div class="col card-list">
-            <div class="card">
-                <img id="${v.id}" src="${photoPath}" class="card-img-top ${v.id}" alt="..." />
-                <div class="card-body main-card">
-                <div class="card-header">
-                    <div class="header-wrapper">
-                      <h5 class="card-title ${v.id}">${name}</h5>
-                      <p class="card-text ${v.id}">${mbti}</p>
-                    </div>
-                    <button id="${v.id}" class="card-button">삭제</button>
+    <div class="col card-list">
+        <div class="card">
+            <img id="${id}" src="${photoPath}" class="card-img-top ${v.id}" alt="..." />
+            <div class="card-body main-card">
+            <div class="card-header">
+                <div class="header-wrapper">
+                  <h5 class="card-title ${id}">${name}</h5>
+                  <p class="card-text ${id}">${mbti}</p>
                 </div>
-                <div class="card-content">
-                  <span class="${v.id}">${tmi}</span>
-                </div>
-                </div>
+                <button id="${id}" class="card-button">삭제</button>
             </div>
-        </div>`;
+            <div class="card-content">
+              <span class="${id}">${tmi}</span>
+            </div>
+            </div>
+        </div>
+    </div>`;
     $("#card").append(temp_html);
   });
 
+  // DOM에 이벤트 등록
   const btns = $(".card-button");
   const imgs = $(".card-img-top");
 
@@ -156,11 +173,11 @@ $("document").ready(async function () {
     window.location.reload();
   });
 
-  // 데이서 수정 이벤트
-  imgs.click(async function (e) {
+  // 사진 클릭 시 데이터 수정 모드로 변경
+  imgs.click(function (e) {
+    alert("수정 시에는 사진을 교체하지 않아도 됩니다.");
     const content = $(`.${e.target.id}`);
 
-    const photo = content[0].src;
     const name = content[1].innerText;
     const mbti = content[2].innerText;
     const tmi = content[3].innerText;
@@ -168,7 +185,6 @@ $("document").ready(async function () {
     mode = "update";
     id = e.target.id;
 
-    photoInput.val(photo);
     nameInput.val(name);
     mbtiInput.val(mbti);
     tmiInput.val(tmi);

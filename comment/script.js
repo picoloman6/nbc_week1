@@ -48,7 +48,6 @@ async function addContent() {
     return;
   }
 
-  // 6. 등록, 수정 나누기
   if (mod === 'add') {
     await addDoc(collection(db, 'comment'), document);
   } else {
@@ -78,12 +77,22 @@ $('#enterbtn').click(async function () {
 
 // DOM 생성 후 데이터 받아와서 렌더링
 $('document').ready(async function () {
+  // Firesotr에서 데이터 받아오기
   const docs = await getDocs(
     query(collection(db, 'comment'), orderBy('date', 'desc'))
   );
 
-  docs.forEach((v) => {
-    const { name, content, date } = v.data();
+  const data = await Promise.all(
+    docs.docs.map((v) => {
+      const obj = v.data();
+      obj.id = v.id;
+      return obj;
+    })
+  );
+
+  // 받아온 데이터로 DOM 생성
+  data.forEach((v) => {
+    const { id, name, content, date } = v;
     const newDate = new Date(date);
     const month = `${newDate.getMonth() + 1}.`;
     const mDate = `${newDate.getDate()}.`;
@@ -94,14 +103,13 @@ $('document').ready(async function () {
       <div class="card-body">
         <div class="board_title">
             <div>
-              <h6 class="card-title ${v.id}">${name}</h6>
+              <h6 class="card-title ${id}">${name}</h6>
               <span class="comment-date">${month}${mDate} ${mHour}${mMinute}</span>
             </div>
-            <p class="card-text text-list ${v.id}">${content}</p>
+            <p class="card-text text-list ${id}">${content}</p>
             <div class="board_btn">
-              <button id="${v.id}" class="update-button">수정</button>
-              <button id="${v.id}" class="delete-button">삭제</button>
-              
+              <button id="${id}" class="update-button">수정</button>
+              <button id="${id}" class="delete-button">삭제</button>
             </div>
         </div>
       </div>
@@ -109,6 +117,7 @@ $('document').ready(async function () {
     $('#card').append(temp_html);
   });
 
+  // DOM에 이벤트 등록
   const updateBtns = $('.update-button');
   const deletebtn = $('.delete-button');
 
